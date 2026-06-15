@@ -34,7 +34,7 @@ export type Race = {
 
 export async function getBooks(): Promise<Book[]> {
   const rows = await sql`
-    SELECT id, title, author, language, status, finished_at
+    SELECT id, title, author, language, status, finished_at::text
     FROM books
     ORDER BY finished_at DESC NULLS LAST, created_at DESC
   `;
@@ -43,7 +43,7 @@ export async function getBooks(): Promise<Book[]> {
 
 export async function getRaces(): Promise<Race[]> {
   const rows = await sql`
-    SELECT id, name, race_date, distance, time, location, strava_link
+    SELECT id, name, race_date::text, distance, time, location, strava_link
     FROM races
     ORDER BY race_date DESC NULLS LAST, created_at DESC
   `;
